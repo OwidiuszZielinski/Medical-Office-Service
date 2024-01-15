@@ -12,7 +12,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class WorkHours {
+public class WorkHour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,7 +1,7 @@
 package dev.students.medicalofficeservice.core.schedule.dto;
 
 import dev.students.medicalofficeservice.core.schedule.WorkDay;
-import dev.students.medicalofficeservice.core.schedule.WorkHours;
+import dev.students.medicalofficeservice.core.schedule.WorkHour;
 import lombok.Builder;
 
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Builder
 public record WorkDayDTO(Long id,
-                         LocalDate date, List<WorkHours> hours) {
+                         LocalDate date, List<WorkHour> hours) {
 
     public static WorkDayDTO from(WorkDay workDay){
         return WorkDayDTO.builder().id(workDay.getId())

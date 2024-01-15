@@ -6,10 +6,9 @@ import dev.students.medicalofficeservice.core.patient.dto.PatientDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -18,10 +17,15 @@ public class PatientController {
 
     private final PatientService patientService;
 
-    @GetMapping
-    ResponseEntity<PatientDTO> getPatient(Long pNo){
+    @GetMapping("/{pNo}")
+    ResponseEntity<PatientDTO> getPatient(@PathVariable Long pNo){
         PatientDTO patient = patientService.getPatient(pNo);
         return new ResponseEntity<>(patient, HttpStatus.OK);
+    }
+
+    @GetMapping
+    ResponseEntity<List<PatientDTO>> getPatients(){
+        return new ResponseEntity<>(patientService.getPatients(), HttpStatus.OK);
     }
 
     @PostMapping
@@ -29,5 +33,6 @@ public class PatientController {
         PatientDTO patientToAdd = patientService.addPatient(patient);
         return new ResponseEntity<>(patientToAdd,HttpStatus.CREATED);
     }
+
 
 }

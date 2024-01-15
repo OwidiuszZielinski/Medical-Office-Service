@@ -25,6 +25,6 @@ public class WorkDay {
     private Doctor doctor;
 
     @OneToMany(mappedBy = "workDay", cascade = CascadeType.ALL)
-    private List<WorkHours> hours;
+    private List<WorkHour> hours;
 
 }

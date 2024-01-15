@@ -1,7 +1,5 @@
 package dev.students.medicalofficeservice.core.doctor.dto;
 import dev.students.medicalofficeservice.core.doctor.Doctor;
-import dev.students.medicalofficeservice.core.schedule.WorkDay;
-import dev.students.medicalofficeservice.core.schedule.WorkHours;
 import dev.students.medicalofficeservice.core.schedule.dto.WorkDayDTO;
 import lombok.Builder;
 
