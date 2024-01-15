@@ -19,6 +19,13 @@ target/
 *.iml
 *.ipr
 
+# Ignoruj folder databases
+/databases/
+
+# Ignoruj pliki bazy danych H2
+*.mv.db
+*.trace.db
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
