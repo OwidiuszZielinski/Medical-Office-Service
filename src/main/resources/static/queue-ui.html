@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolejka Pacjentów</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1>Waiting Room</h1>
+</header>
+<div class="main-content">
+    <div class="container">
+        <!-- Kafelki będą dodawane tutaj przez JavaScript -->
+    </div>
+    <div class="current-number">
+        <p>Please now number :</p>
+        <span id="currentNumber">5</span> <!-- Przykładowy numer, który może być aktualizowany dynamicznie -->
+    </div>
+</div>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        function loadData() {
+            $.ajax({
+                url: '/queue/',
+                type: 'get',
+                success: function(data) {
+                    let container = $('.container');
+                    container.empty();
+
+                    data.forEach(function(patient) {
+                        let tile = $('<div class="tile"></div>');
+                        let ticketNumber = $('<div class="ticket-number"></div>').text("No. " + patient.ticketNumber);
+                        let officeNumber = $('<div class="office-number"></div>').text("Office: " + patient.doctorsOfficeNumber);
+
+                        tile.append(ticketNumber);
+                        tile.append(officeNumber);
+
+                        container.append(tile);
+                    });
+                },
+                error: function(err) {
+                    // Obsługa błędów
+                }
+            });
+        }
+
+        loadData(); // Załaduj dane po raz pierwszy
+        setInterval(loadData, 5000); // Odświeżaj dane co 5 sekund
+    });
+</script>

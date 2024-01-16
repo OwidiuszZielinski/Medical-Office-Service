@@ -19,5 +19,9 @@ public class QueueController {
     public ResponseEntity<?> getLongestWaitingPatient(@PathVariable Long doctorId){
         return new ResponseEntity<>(patientService.getLongestWaitingPatient(doctorId), HttpStatus.OK);
     }
+    @GetMapping
+    public ResponseEntity<?> getQueue(){
+        return new ResponseEntity<>(patientService.getQueue(),HttpStatus.OK);
+    }
 
 }

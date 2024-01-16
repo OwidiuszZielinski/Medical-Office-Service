@@ -1,0 +1,93 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6dd5ed, #2193b0); /* Kolorowe tło */
+    margin: 0;
+    padding: 20px;
+    color: white; /* Zmiana koloru tekstu na biały */
+}
+
+.container {
+    width: 70%; /* Dostosuj szerokość */
+    display: flex; /* Dodane, aby zastosować Flexbox wewnątrz kontenera */
+    flex-wrap: wrap; /* Zapewnia przeniesienie kafelków do nowej linii */
+    gap: 10px; /* Odległość między kafelkami */
+    justify-content: flex-start; /* Wyrównanie kafelków do lewej strony */
+}
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Dodane, aby wyrównać kafelki do góry */
+    height: 100vh; /* Wysokość ustawiona na 100% widocznej części okna przeglądarki */
+}
+
+
+.current-number {
+    background: #82e9de;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 25%; /* Szerokość większego kafelka */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.current-number p {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.current-number span {
+    font-size: 48px;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.tile {
+    background: #82e9de;
+    border: none;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: #333;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile:hover {
+    transform: translateY(-10px);
+}
+
+.ticket-number, .office-number {
+    font-size: 30px;
+    color: #333;
+    font-weight: bold;
+}
+
+.ticket-number span, .office-number span {
+    display: block;
+    font-size: 48px;
+    color: #2c3e50;
+    font-weight: bold;
+}
+.office-number {
+    font-size: 20px;
+    margin-top: 10px;
+}
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 40px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}

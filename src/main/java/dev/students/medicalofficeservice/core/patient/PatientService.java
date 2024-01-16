@@ -19,6 +19,7 @@ public class PatientService {
     private final PatientRepository patientRepository;
     private final DoctorService doctorService;
     private final PatientQueueRepository patientQueueRepository;
+    private final PatientCleanupService patientCleanupService;
 
     public PatientDTO getPatient(Long personalIdentityNumber) {
         return Patient.from(patientRepository.findByPersonalIdentityNumber(personalIdentityNumber));
@@ -99,6 +100,7 @@ public class PatientService {
         saveQueue(officeNumber, patient.getTicketNumber());
         patient.setAccepted(true);
         patientRepository.save(patient);
+        patientCleanupService.schedulePatientRemoval(patient.getTicketNumber(), 60000);
         return new AcceptPatientDTO(patient.getTicketNumber(), officeNumber);
     }
 
@@ -114,6 +116,9 @@ public class PatientService {
                 .filter(patient -> !patient.isAccepted())
                 .min(Comparator.comparing(Patient::getTicketNumber))
                 .orElseThrow(() -> new NoSuchElementException("Not found"));
+    }
+    public List<PatientQueue> getQueue(){
+        return patientQueueRepository.findAll();
     }
 
 }
