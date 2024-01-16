@@ -16,8 +16,6 @@ public class ScheduleService {
 
     private final DoctorRepository doctorRepository;
     private final WorkDayRepository workDayRepository;
-    private final WorkHourRepository workHoursRepository;
-
 
     public WorkHourDTO setWorkHours(WorkHourDTO hours) {
         Optional<Doctor> doctorOptional = doctorRepository.findById(hours.doctorId());

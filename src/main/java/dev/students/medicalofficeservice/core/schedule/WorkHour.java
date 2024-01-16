@@ -19,8 +19,8 @@ public class WorkHour {
     private LocalTime startTime;
     private LocalTime endTime;
     @ManyToOne
+    @JoinColumn(name = "workday_id")
     @JsonBackReference
     private WorkDay workDay;
-
 
 }

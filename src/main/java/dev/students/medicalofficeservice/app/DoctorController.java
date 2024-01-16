@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,12 +21,12 @@ public class DoctorController {
 
     @GetMapping
 
-    ResponseEntity<List<DoctorDTO>> getDoctors(){
+    public ResponseEntity<?> getDoctors(){
         return new ResponseEntity<>(doctorService.getDoctors(),HttpStatus.OK);
     }
 
     @PostMapping
-    ResponseEntity<DoctorPostDTO> addDoctor(DoctorPostDTO doctor) {
+    public ResponseEntity<?> addDoctor(@RequestBody DoctorPostDTO doctor) {
         DoctorPostDTO doctorToAdd = doctorService.addDoctor(doctor);
         return new ResponseEntity<>(doctorToAdd, HttpStatus.CREATED);
     }

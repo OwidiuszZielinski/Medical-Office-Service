@@ -1,10 +1,8 @@
 package dev.students.medicalofficeservice.core.patient.dto;
 
 import dev.students.medicalofficeservice.core.patient.Patient;
-import dev.students.medicalofficeservice.core.ticket.Ticket;
 import lombok.Builder;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,17 +10,20 @@ import java.util.stream.Collectors;
 public record PatientDTO(Long id,
                          String name,
                          Long personalIdentityNumber,
-                         String surname, LocalTime visitTime,
-                         Ticket ticket) {
+                         String surname,
+                         Integer visitHour,
+                         Integer visitMinute,
+                         Integer ticketNumber) {
 
     public static Patient from(PatientDTO patientDTO) {
         return Patient.builder()
-                .id(patientDTO.id)
-                .name(patientDTO.name)
-                .surname(patientDTO.surname)
-                .visitTime(patientDTO.visitTime)
+                .id(patientDTO.id())
+                .name(patientDTO.name())
+                .surname(patientDTO.surname())
+                .visitHour(patientDTO.visitHour())
+                .visitMinute(patientDTO.visitMinute())
                 .personalIdentityNumber(patientDTO.personalIdentityNumber())
-                .ticket(patientDTO.ticket)
+                .ticketNumber(patientDTO.ticketNumber())
                 .build();
     }
 

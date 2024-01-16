@@ -2,7 +2,7 @@ package dev.students.medicalofficeservice.app;
 
 
 import dev.students.medicalofficeservice.core.patient.PatientService;
-import dev.students.medicalofficeservice.core.patient.dto.PatientDTO;
+import dev.students.medicalofficeservice.core.patient.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,21 +18,62 @@ public class PatientController {
     private final PatientService patientService;
 
     @GetMapping("/{pNo}")
-    ResponseEntity<PatientDTO> getPatient(@PathVariable Long pNo){
+    public ResponseEntity<?> getPatient(@PathVariable Long pNo){
         PatientDTO patient = patientService.getPatient(pNo);
         return new ResponseEntity<>(patient, HttpStatus.OK);
     }
 
     @GetMapping
-    ResponseEntity<List<PatientDTO>> getPatients(){
+    public ResponseEntity<?> getPatients(){
         return new ResponseEntity<>(patientService.getPatients(), HttpStatus.OK);
     }
 
     @PostMapping
-    ResponseEntity<PatientDTO> addPatient(PatientDTO patient){
-        PatientDTO patientToAdd = patientService.addPatient(patient);
+    public ResponseEntity<?> addPatient(@RequestBody CreatePatientDTO patient){
+        CreatePatientDTO patientToAdd = patientService.addPatient(patient);
         return new ResponseEntity<>(patientToAdd,HttpStatus.CREATED);
     }
 
+    @PatchMapping("/{id}/name")
+    public ResponseEntity<?> updatePatientSurname(@PathVariable Long id, @RequestBody PatientUpdateNameDTO name) {
+        PatientDTO updatedPatient = patientService.updatePatientName(id, name);
+        return new ResponseEntity<>(updatedPatient,HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}/surname")
+    public ResponseEntity<?> updatePatientSurname(@PathVariable Long id, @RequestBody PatientUpdateSurnameDTO surname) {
+        PatientDTO updatedPatient = patientService.updatePatientSurname(id, surname);
+        return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}/ticket-number")
+    public ResponseEntity<?> updatePatientTicketNumber(@PathVariable Long id, @RequestBody PatientUpdateTicketNumberDTO ticketNumber) {
+        PatientDTO updatedPatient = patientService.updatePatientTicketNumber(id, ticketNumber);
+        return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}/visit-time")
+    public ResponseEntity<?> updatePatientVisitTime(@PathVariable Long id, @RequestBody PatientUpdateVisitTimeDTO visitTime) {
+        PatientDTO updatedPatient = patientService.updatePatientVisitTime(id, visitTime);
+        return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}/personal-identity-number")
+    public ResponseEntity<?> updatePatientPersonalIdentityNumber(@PathVariable Long id, @RequestBody PatientUpdatePersonalIdentityNumberDTO personalIdentityNumber) {
+        PatientDTO updatedPatient = patientService.updatePatientPersonalIdentityNumber(id, personalIdentityNumber);
+        return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePatient(@PathVariable Long id) {
+        patientService.deletePatient(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deletePatients(){
+        patientService.deletePatients();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
