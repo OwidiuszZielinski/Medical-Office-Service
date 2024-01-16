@@ -21,7 +21,7 @@ public class PatientService {
         return PatientDTO.fromAll(patientRepository.findAll());
     }
 
-    public CreatePatientDTO addPatient(CreatePatientDTO patient) {
+    public CreatePatientDTO registerPatient(CreatePatientDTO patient) {
         Patient patientToSave = CreatePatientDTO.from(patient);
         patientToSave.setTicketNumber(generateTicketNumber());
         patientRepository.save(patientToSave);
@@ -39,14 +39,14 @@ public class PatientService {
         Patient patientToUpdate = getPatientToUpdate(id);
         patientToUpdate.setSurname(surname);
         patientRepository.save(patientToUpdate);
-        return Patient.from(patientRepository.save(patientToUpdate));
+        return Patient.from(patientToUpdate);
     }
 
     public PatientDTO updatePatientTicketNumber(Long id, Integer ticketNumber) {
         Patient patientToUpdate = getPatientToUpdate(id);
         patientToUpdate.setTicketNumber(ticketNumber);
         patientRepository.save(patientToUpdate);
-        return Patient.from(patientRepository.save(patientToUpdate));
+        return Patient.from(patientToUpdate);
     }
 
     public PatientDTO updatePatientVisitTime(Long id, PatientUpdateVisitTimeDTO patientDTO) {
@@ -54,14 +54,14 @@ public class PatientService {
         patientToUpdate.setVisitHour(patientDTO.visitHour());
         patientToUpdate.setVisitMinute(patientDTO.visitMinute());
         patientRepository.save(patientToUpdate);
-        return Patient.from(patientRepository.save(patientToUpdate));
+        return Patient.from(patientToUpdate);
     }
 
     public PatientDTO updatePatientPersonalIdentityNumber(Long id, Long personalIdentityNumber) {
         Patient patientToUpdate = getPatientToUpdate(id);
         patientToUpdate.setPersonalIdentityNumber(personalIdentityNumber);
         patientRepository.save(patientToUpdate);
-        return Patient.from(patientRepository.save(patientToUpdate));
+        return Patient.from(patientToUpdate);
     }
 
     public void deletePatient(Long id) {
