@@ -21,6 +21,6 @@ public class WorkHour {
     @ManyToOne
     @JoinColumn(name = "workday_id")
     @JsonBackReference
-    private WorkDay workDay;
+    private Schedule schedule;
 
 }

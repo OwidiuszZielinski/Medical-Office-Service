@@ -28,23 +28,23 @@ public class PatientService {
         return patient;
     }
 
-    public PatientDTO updatePatientName(Long id, PatientUpdateNameDTO patientDTO) {
+    public PatientDTO updatePatientName(Long id, String name) {
         Patient patientToUpdate = getPatientToUpdate(id);
-        patientToUpdate.setName(patientDTO.name());
+        patientToUpdate.setName(name);
         patientRepository.save(patientToUpdate);
         return Patient.from(patientToUpdate);
     }
 
-    public PatientDTO updatePatientSurname(Long id, PatientUpdateSurnameDTO patientDTO) {
+    public PatientDTO updatePatientSurname(Long id, String surname) {
         Patient patientToUpdate = getPatientToUpdate(id);
-        patientToUpdate.setSurname(patientDTO.surname());
+        patientToUpdate.setSurname(surname);
         patientRepository.save(patientToUpdate);
         return Patient.from(patientRepository.save(patientToUpdate));
     }
 
-    public PatientDTO updatePatientTicketNumber(Long id, PatientUpdateTicketNumberDTO patientDTO) {
+    public PatientDTO updatePatientTicketNumber(Long id, Integer ticketNumber) {
         Patient patientToUpdate = getPatientToUpdate(id);
-        patientToUpdate.setTicketNumber(patientDTO.ticketNumber());
+        patientToUpdate.setTicketNumber(ticketNumber);
         patientRepository.save(patientToUpdate);
         return Patient.from(patientRepository.save(patientToUpdate));
     }
@@ -57,9 +57,9 @@ public class PatientService {
         return Patient.from(patientRepository.save(patientToUpdate));
     }
 
-    public PatientDTO updatePatientPersonalIdentityNumber(Long id, PatientUpdatePersonalIdentityNumberDTO patientDTO) {
+    public PatientDTO updatePatientPersonalIdentityNumber(Long id, Long personalIdentityNumber) {
         Patient patientToUpdate = getPatientToUpdate(id);
-        patientToUpdate.setPersonalIdentityNumber(patientDTO.personalIdentityNumber());
+        patientToUpdate.setPersonalIdentityNumber(personalIdentityNumber);
         patientRepository.save(patientToUpdate);
         return Patient.from(patientRepository.save(patientToUpdate));
     }

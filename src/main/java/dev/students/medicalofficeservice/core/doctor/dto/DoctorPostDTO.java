@@ -1,10 +1,7 @@
 package dev.students.medicalofficeservice.core.doctor.dto;
 
 import dev.students.medicalofficeservice.core.doctor.Doctor;
-import dev.students.medicalofficeservice.core.schedule.WorkDay;
 import lombok.Builder;
-
-import java.util.List;
 
 @Builder
 public record DoctorPostDTO(Long Id,

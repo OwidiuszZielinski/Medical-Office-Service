@@ -35,19 +35,19 @@ public class PatientController {
     }
 
     @PatchMapping("/{id}/name")
-    public ResponseEntity<?> updatePatientSurname(@PathVariable Long id, @RequestBody PatientUpdateNameDTO name) {
+    public ResponseEntity<?> updatePatientName(@PathVariable Long id, @RequestBody String name) {
         PatientDTO updatedPatient = patientService.updatePatientName(id, name);
         return new ResponseEntity<>(updatedPatient,HttpStatus.OK);
     }
 
     @PatchMapping("/{id}/surname")
-    public ResponseEntity<?> updatePatientSurname(@PathVariable Long id, @RequestBody PatientUpdateSurnameDTO surname) {
+    public ResponseEntity<?> updatePatientSurname(@PathVariable Long id, @RequestBody String surname) {
         PatientDTO updatedPatient = patientService.updatePatientSurname(id, surname);
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
     }
 
     @PatchMapping("/{id}/ticket-number")
-    public ResponseEntity<?> updatePatientTicketNumber(@PathVariable Long id, @RequestBody PatientUpdateTicketNumberDTO ticketNumber) {
+    public ResponseEntity<?> updatePatientTicketNumber(@PathVariable Long id, @RequestBody Integer ticketNumber) {
         PatientDTO updatedPatient = patientService.updatePatientTicketNumber(id, ticketNumber);
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
     }
@@ -59,7 +59,7 @@ public class PatientController {
     }
 
     @PatchMapping("/{id}/personal-identity-number")
-    public ResponseEntity<?> updatePatientPersonalIdentityNumber(@PathVariable Long id, @RequestBody PatientUpdatePersonalIdentityNumberDTO personalIdentityNumber) {
+    public ResponseEntity<?> updatePatientPersonalIdentityNumber(@PathVariable Long id, @RequestBody Long personalIdentityNumber) {
         PatientDTO updatedPatient = patientService.updatePatientPersonalIdentityNumber(id, personalIdentityNumber);
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
     }

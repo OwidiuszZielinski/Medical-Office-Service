@@ -1,10 +1,11 @@
 package dev.students.medicalofficeservice.core.doctor;
 
 
-import dev.students.medicalofficeservice.core.schedule.WorkDay;
+import dev.students.medicalofficeservice.core.schedule.Schedule;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,8 @@ public class Doctor {
     private Long Id;
     private String name;
     private String surname;
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<WorkDay> workDays;
+    @ManyToMany(mappedBy = "doctors" ,fetch = FetchType.EAGER)
+    private List<Schedule> schedules = new ArrayList<>();
 
 
 }

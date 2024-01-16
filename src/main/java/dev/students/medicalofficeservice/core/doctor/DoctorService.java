@@ -15,7 +15,7 @@ public class DoctorService {
 
     public DoctorPostDTO addDoctor(DoctorPostDTO doctor){
         Doctor doctorToSave = DoctorPostDTO.from(doctor);
-        doctorToSave.setWorkDays(new ArrayList<>());
+        doctorToSave.setSchedules(new ArrayList<>());
         repository.save(doctorToSave);
         return doctor;
     }

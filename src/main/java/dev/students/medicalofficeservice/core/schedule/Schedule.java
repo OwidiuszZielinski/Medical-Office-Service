@@ -17,16 +17,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class WorkDay {
+public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "doctor_schedule",
+            joinColumns = @JoinColumn(name = "schedule_id"),
+            inverseJoinColumns = @JoinColumn(name = "doctor_id")
+    )
     @JsonBackReference
-    private Doctor doctor;
-    @OneToMany(mappedBy = "workDay", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Doctor> doctors = new ArrayList<>();
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<WorkHour> hours = new ArrayList<>();
 
 }
