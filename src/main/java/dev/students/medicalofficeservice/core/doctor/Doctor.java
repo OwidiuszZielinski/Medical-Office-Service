@@ -24,6 +24,7 @@ public class Doctor {
     @ManyToMany(mappedBy = "doctors" ,fetch = FetchType.EAGER)
     @Builder.Default
     private List<Schedule> schedules = new ArrayList<>();
+    private Integer officeNumber;
 
 
     public static DoctorDTO from(Doctor doctor) {
@@ -32,6 +33,7 @@ public class Doctor {
                 .name(doctor.name)
                 .surname(doctor.surname)
                 .schedules(doctor.schedules)
+                .officeNumber(doctor.officeNumber)
                 .build();
     }
 }

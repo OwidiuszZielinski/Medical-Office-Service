@@ -13,7 +13,6 @@ import lombok.*;
 @Builder
 @Getter
 @Setter
-
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +23,7 @@ public class Patient {
     private Integer visitHour;
     private Integer visitMinute;
     private Integer ticketNumber;
+    private boolean accepted;
 
     public static PatientDTO from(Patient patient) {
         return PatientDTO.builder()
@@ -34,6 +34,7 @@ public class Patient {
                 .visitMinute(patient.visitMinute)
                 .surname(patient.surname)
                 .ticketNumber(patient.ticketNumber)
+                .accepted(patient.accepted)
                 .build();
     }
 }

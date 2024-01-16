@@ -49,6 +49,12 @@ public class DoctorService {
     public void deleteDoctor(Long id){
         repository.deleteById(id);
     }
+    public DoctorDTO setDoctorOfficeNumber(Long id, Integer officeId) {
+        Doctor doctorToUpdate = getDoctorToUpdate(id);
+        doctorToUpdate.setOfficeNumber(officeId);
+        repository.save(doctorToUpdate);
+        return Doctor.from(doctorToUpdate);
+    }
 
     private Doctor getDoctorToUpdate(Long id) {
         return repository

@@ -44,19 +44,19 @@ public class PatientController {
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}/ticket-number")
+    @PatchMapping("/{id}/ticket")
     public ResponseEntity<?> updatePatientTicketNumber(@PathVariable Long id, @RequestBody Integer ticketNumber) {
         PatientDTO updatedPatient = patientService.updatePatientTicketNumber(id, ticketNumber);
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}/visit-time")
+    @PatchMapping("/{id}/visit")
     public ResponseEntity<?> updatePatientVisitTime(@PathVariable Long id, @RequestBody PatientUpdateVisitTimeDTO visitTime) {
         PatientDTO updatedPatient = patientService.updatePatientVisitTime(id, visitTime);
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}/personal-identity-number")
+    @PatchMapping("/{id}/pin")
     public ResponseEntity<?> updatePatientPersonalIdentityNumber(@PathVariable Long id, @RequestBody Long personalIdentityNumber) {
         PatientDTO updatedPatient = patientService.updatePatientPersonalIdentityNumber(id, personalIdentityNumber);
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);

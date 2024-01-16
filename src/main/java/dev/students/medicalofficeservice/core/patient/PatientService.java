@@ -1,17 +1,24 @@
 package dev.students.medicalofficeservice.core.patient;
 
-import dev.students.medicalofficeservice.core.patient.dto.*;
+import dev.students.medicalofficeservice.core.doctor.DoctorService;
+import dev.students.medicalofficeservice.core.patient.dto.AcceptPatientDTO;
+import dev.students.medicalofficeservice.core.patient.dto.CreatePatientDTO;
+import dev.students.medicalofficeservice.core.patient.dto.PatientDTO;
+import dev.students.medicalofficeservice.core.patient.dto.PatientUpdateVisitTimeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
 public class PatientService {
 
     private final PatientRepository patientRepository;
-
+    private final DoctorService doctorService;
+    private final PatientQueueRepository patientQueueRepository;
 
     public PatientDTO getPatient(Long personalIdentityNumber) {
         return Patient.from(patientRepository.findByPersonalIdentityNumber(personalIdentityNumber));
@@ -85,4 +92,28 @@ public class PatientService {
                 .orElse(1);
         return ticketNumber + 1;
     }
+
+    public AcceptPatientDTO getLongestWaitingPatient(Long doctorId) {
+        Patient patient = getPatient();
+        Integer officeNumber = doctorService.getDoctor(doctorId).officeNumber();
+        saveQueue(officeNumber, patient.getTicketNumber());
+        patient.setAccepted(true);
+        patientRepository.save(patient);
+        return new AcceptPatientDTO(patient.getTicketNumber(), officeNumber);
+    }
+
+    private void saveQueue(Integer officeNumber, Integer ticketNumber) {
+        patientQueueRepository.save(PatientQueue.builder()
+                .doctorsOfficeNumber(officeNumber)
+                .ticketNumber(ticketNumber).build());
+    }
+
+
+    private Patient getPatient() {
+        return patientRepository.findAll().stream()
+                .filter(patient -> !patient.isAccepted())
+                .min(Comparator.comparing(Patient::getTicketNumber))
+                .orElseThrow(() -> new NoSuchElementException("Not found"));
+    }
+
 }

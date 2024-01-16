@@ -52,5 +52,11 @@ public class DoctorController {
         doctorService.deleteDoctor(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PatchMapping("/{id}/office")
+    public ResponseEntity<?> setDoctorOffice(@PathVariable Long id, @RequestBody Integer officeId) {
+        DoctorDTO updateDoctor = doctorService.setDoctorOfficeNumber(id, officeId);
+        return new ResponseEntity<>(updateDoctor,HttpStatus.OK);
+    }
+
 
 }

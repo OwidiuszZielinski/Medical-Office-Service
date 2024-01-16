@@ -13,7 +13,9 @@ public record PatientDTO(Long id,
                          String surname,
                          Integer visitHour,
                          Integer visitMinute,
-                         Integer ticketNumber) {
+                         Integer ticketNumber,
+                         boolean accepted
+) {
 
     public static Patient from(PatientDTO patientDTO) {
         return Patient.builder()
@@ -24,6 +26,7 @@ public record PatientDTO(Long id,
                 .visitMinute(patientDTO.visitMinute())
                 .personalIdentityNumber(patientDTO.personalIdentityNumber())
                 .ticketNumber(patientDTO.ticketNumber())
+                .accepted(patientDTO.accepted())
                 .build();
     }
 

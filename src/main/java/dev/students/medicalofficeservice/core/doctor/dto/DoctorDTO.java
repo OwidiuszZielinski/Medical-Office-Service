@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Builder
-public record DoctorDTO(Long id, String name, String surname, List<Schedule> schedules) {
+public record DoctorDTO(Long id, String name, String surname, List<Schedule> schedules, Integer officeNumber) {
 
     public static DoctorDTO from(Doctor doctor) {
         return DoctorDTO.builder()
@@ -16,6 +16,7 @@ public record DoctorDTO(Long id, String name, String surname, List<Schedule> sch
                 .name(doctor.getName())
                 .surname(doctor.getSurname())
                 .schedules(doctor.getSchedules())
+                .officeNumber(doctor.getOfficeNumber())
                 .build();
 
     }
