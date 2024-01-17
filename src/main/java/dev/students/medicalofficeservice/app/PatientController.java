@@ -62,9 +62,9 @@ public class PatientController {
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePatient(@PathVariable Long id) {
-        patientService.deletePatient(id);
+    @DeleteMapping("/{pin}")
+    public ResponseEntity<?> deletePatient(@PathVariable Long pin) {
+        patientService.deletePatient(pin);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

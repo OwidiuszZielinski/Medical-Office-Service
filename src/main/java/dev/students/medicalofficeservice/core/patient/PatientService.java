@@ -72,8 +72,10 @@ public class PatientService {
         return Patient.from(patientToUpdate);
     }
 
-    public void deletePatient(Long id) {
-        patientRepository.deleteById(id);
+    public void deletePatient(Long pin) {
+        Patient byPersonalIdentityNumber = patientRepository.findByPersonalIdentityNumber(pin);
+        patientRepository.delete(byPersonalIdentityNumber);
+
     }
 
     public void deletePatients() {

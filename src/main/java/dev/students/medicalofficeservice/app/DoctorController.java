@@ -4,6 +4,7 @@ import dev.students.medicalofficeservice.core.doctor.DoctorService;
 import dev.students.medicalofficeservice.core.doctor.dto.DoctorDTO;
 import dev.students.medicalofficeservice.core.doctor.dto.DoctorPostDTO;
 import dev.students.medicalofficeservice.core.patient.dto.PatientDTO;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -52,6 +53,7 @@ public class DoctorController {
         doctorService.deleteDoctor(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @Operation(description = "Set a office number")
     @PatchMapping("/{id}/office")
     public ResponseEntity<?> setDoctorOffice(@PathVariable Long id, @RequestBody Integer officeId) {
         DoctorDTO updateDoctor = doctorService.setDoctorOfficeNumber(id, officeId);
