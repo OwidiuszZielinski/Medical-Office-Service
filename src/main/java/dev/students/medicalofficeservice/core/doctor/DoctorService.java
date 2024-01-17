@@ -56,7 +56,7 @@ public class DoctorService {
         return Doctor.from(doctorToUpdate);
     }
 
-    private Doctor getDoctorToUpdate(Long id) {
+    public Doctor getDoctorToUpdate(Long id) {
         return repository
                 .findById(id)
                 .orElseThrow(() -> new RuntimeException("Doctor not found"));

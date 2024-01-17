@@ -82,7 +82,7 @@ public class PatientService {
         patientRepository.deleteAll(patientRepository.findAll());
     }
 
-    private Patient getPatientToUpdate(Long id) {
+    public Patient getPatientToUpdate(Long id) {
         return patientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pacjent nie znaleziony"));
     }
